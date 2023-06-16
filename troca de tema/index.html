@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>troca de tema</title>
+    <style>
+        #t1{
+            background-color: #0f0;
+        }
+        *#d1{
+            font-size: 18px;
+            background-color: black;
+            width: 100px;
+            height: 50px;
+            color: #0f0;
+            text-align: center;
+            line-height: 50px;
+            position:absolute;
+            right: 40px;
+            top: 20px;
+            border-style: solid;
+            border-color: #0f0;
+        }
+        #d2{
+            font-size: 19px;
+            background-color:#0f0;
+            width: 100px;
+            height: 50px;
+            color: black;
+            text-align: center;
+            line-height: 50px;
+            position:absolute;
+            right: 150px;
+            top: 20px;
+            border-style: solid;
+            border-color: black;
+        }
+        .text{
+            font-size: 20px;
+        }
+        @media(max-width: 780px ){
+            body{
+        flex-direction: column;
+            }
+            #d1{
+                position: absolute;
+                top: 300px;
+                left: 180px;
+            }
+            #d2{
+                position:absolute ;
+                top: 300px;
+                left: 55px;
+            }
+    
+        }
+    </style>
+</head>
+
+<body id="t1" >
+    <h1 >Melhores jogos na minha concepção</h1>
+    <p> 
+        <ol class="text" type="I">
+            <li>Ps 4</li>
+            <ol>
+                <li>GOD OF WAR 4</li>
+                <li>Resident Evil 7</li>
+                <li>Mortal Kombat 11</li>
+            </ol>
+            <li>XBOX 360</li>
+            <ol start="4">
+                <li>Call  of duty - black ops II</li>
+                <li>Falout 3 </li>
+                <li>Falout New Vegas</li>
+                <li>Resident Evil 4</li>
+                <li>GTA V</li>
+            </ol>
+            <li>Ps 2</li>
+            <ol start="9">
+                <li>GTA san andreas</li>
+                <li>Mortal Kombat Shaolin</li>
+                <li>Area 51</li>
+            </ol>
+        </ol>
+    </p>
+    <div id="d1" onclick="dark()" >
+        escuro
+    </div>
+
+    <div id="d2" onclick="claro()"  > 
+        claro
+    </div>
+    <script >var t = window.document.getElementById('t1')
+        var d1 = window.document.getElementById('d1')
+        var d2 = window.document.getElementById('d2')
+        d1.addEventListener('mouseenter' , cima)
+        d1.addEventListener('mouseout', fora)
+        d2.addEventListener('mouseenter' , cima2)
+        d2.addEventListener('mouseout', fora2)
+        
+        
+        function dark() {
+            t.style.background ='#000'
+            t.style.color = '#0f0'
+        }
+        function cima() {
+            d1.style.borderColor = '#fff'
+        
+        }
+        function fora() {
+            d1.style.borderColor = '#0f0'
+        }
+        function claro() {
+            t.style.background ='#0f0'
+            t.style.color = '#000'
+            
+        }
+        function cima2 () {
+            d2.style.borderColor = '#fff'
+        
+        }
+        function fora2 () {
+            d2.style.borderColor = '#000'
+        }</script>
+</body>
+</html>

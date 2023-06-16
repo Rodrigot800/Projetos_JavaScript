@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tabuada</title>
+</head>
+<body>
+    <h1 align="center">Tabuada</h1>
+    <h2 id="tabuada"></h2>
+    <script>
+        if (confirm("deseja ver a tabuada ?")) {
+        var n1 
+        var n2 
+        var rpt = 0
+        var tabuada = document.getElementById('tabuada')
+
+        for ( n1 = 1 ; n1 <= 10 ; n1++ ) {
+
+            for (n2 = 1 ; n2 <= 10 ; n2++) {
+               rpt = n1 * n2 
+               tabuada.innerHTML += `<h2> ${n1} x ${n2} = ${rpt} </h2>`
+            }
+            
+        }
+
+        
+    }else{
+        
+        var tabuada = document.getElementById('tabuada')
+        tabuada.innerHTML = `<h2> você não quis ver a tabuada...</h2>`
+    }
+    </script>
+</body>
+</html>

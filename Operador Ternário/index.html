@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operador Ternário</title>
+</head>
+<body>
+    <form>
+        <p>informe sua idade : <input type="number" id="idade1">
+        <input type="button" value="calcular" onclick="calc_idade()">
+        <input type="reset" value="limpar"></p>
+        <p id="res">Resultado...</p>
+    </form>
+    <script>
+        function calc_idade() {
+            var idade2 = parseInt(window.document.getElementById('idade1').value)
+            var res = window.document.getElementById('res')
+
+            res.innerHTML =  (idade2 >= 18 ) ? 'você já pode ser preso !!!' : 'você me dar nojo, neném'
+        }
+    </script>
+</body>
+</html>

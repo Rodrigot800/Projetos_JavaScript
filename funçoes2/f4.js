@@ -1,0 +1,15 @@
+function fatorial(n) {
+    let fat = 1 
+    let c
+    for ( c = n; c > 1; c--) {
+
+        fat *= c
+
+    }
+
+    return fat
+    
+
+}
+
+console.log(fatorial(170))

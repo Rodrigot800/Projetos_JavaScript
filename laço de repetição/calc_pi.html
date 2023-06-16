@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="pi.png" type="image/x-icon">
+    <title>calc pi</title>
+    <style>
+        body{
+            background-color: aquamarine;
+            
+        }
+        section{
+            border-radius: 13px;
+            background-color: azure;
+            width: 350px;
+            padding: 20px;
+            margin: auto;
+            box-shadow: 10px 10px 10px black;
+        }
+        .bt{
+            background-color:aquamarine;
+            width: 70px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1 align="center"> Métados para calcular o <strong>π</strong></h1>
+    <section>
+        <h1><abbr title="Formula de Leibniz para achar o π"> <strong>1° Métado </strong> </abb></h1>
+        <h2> 1 - (1/3) + (1/5) - (1/7) ... N = π/4 </h2>
+    <h2 id="pires"></h2>
+    <p>N repetições: <input type="number" id="rep">
+    <input type="button" value="calcular " onclick="calc()" class="bt"></p>
+
+    <h1> 2° métado - π = √(6 x (1/1<sup>2</sup> + 1/2<sup>2</sup> + 1/3<sup>2</sup> + ... N))</h1>
+    <h2 id="pires2"></h2>
+    <p>N repetições: <input type="number"  id="rep2">
+    <input type="button" value="calcular " onclick="calc2()" class="bt"></p>
+    </section>
+    <script>
+        function calc() {
+            var i
+            var inv = 0 
+            var pi = 0
+            var soma1 = 0
+            var sinal = 0
+            var pires = document.getElementById('pires')
+            var rep2 = parseFloat(document.getElementById('rep').value)
+            for ( i = 1; i < rep2 ; i++) {
+                
+                inv = 1 / (2 * i + 1 )
+                
+                sinal = ( -1 )**i * inv
+
+                soma1 += sinal
+            }
+            
+            pi = 4 * (1 + soma1)
+
+            pires.innerHTML = ` <p> π = ${pi.toFixed(10)} </p>`
+        }
+
+        function calc2() {
+            var pi2
+            var somaqua
+            var soma = 0
+            var rep3 = parseInt(document.getElementById('rep2').value)
+            var pires3 = document.getElementById('pires2')
+
+
+            for(i=1; i<= rep3; i++){
+
+	 	        somaqua =  6 * ( 1/ i ** 2 );
+	 	        soma += somaqua;  	  
+	        }
+
+             pi2 = Math.sqrt(soma)
+
+             pires3.innerHTML = `<p> π = ${pi2.toFixed(10)} </p>`
+
+
+        }
+    </script>
+</body>
+</html>

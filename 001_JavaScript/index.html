@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>contar e printar o n de letras</title>
+    <style>
+        body{
+            background-color: #0ff;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var nome = window.prompt('qual é seu nome ?')
+        document.write(`<h1> seu nome ${nome} tem ${nome.length} letras. <h1>`) // usando `` e ${}
+        document.write(`<h2> seu nome em letras maiúsculas: ${nome.toUpperCase()} <h2>`)
+        document.write('<h2> seu nome em letras minúsculas: '+ nome.toLowerCase() +' <h2>') // usando ++
+    </script>
+</body>
+</html>

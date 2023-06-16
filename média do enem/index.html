@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon-32x32.png" type="image/x-icon">
+    <title>Média do ENEM </title>
+    <style>
+        body{
+            color: aquamarine;
+            background-color: #000;  
+        }
+        #res{
+            background-color: aquamarine;
+            color: black;
+            position: absolute;
+            top: 50px;
+            left: 450px;
+            text-align: left;
+        }
+        #bt1{
+            position: absolute;
+            top: 450px;
+            left: 100px;
+            background-color: aquamarine;
+            width: 100px;
+            height: 40px;
+        }
+        #btreset{
+            position: absolute;
+            top: 450px;
+            left: 220px;
+            background-color: aquamarine;
+            width: 100px;
+            height: 40px;
+        }
+        .i{
+            background-color: rgb(171, 252, 225);
+            width: 70px;
+            font-size: 20px;
+        }
+        p{
+            font-size: 24px;
+            padding-right: 80px;
+        }
+        table,tr,td {    
+        border: solid;
+        vertical-align: text-bottom;
+        width: 20px;
+        }
+        #p1{
+            text-align:center;
+            width: 100px;
+            position: relative;
+            left: 140px;
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form >
+        <div>
+            <table>
+                <tr><td COLSPAN="2"><h1>
+                    Média do ENEM
+                </h1></td></tr>
+                <tr>
+                    <td><p> linguagens<input type="number" value="535.3" class="i" id="n1"> </p></td>
+                    <td><p> Humanas<input type="number" value="678.1" class="i" id="n2"></p></td>
+                </tr>
+                <tr>
+                    <td> <p>Natureza<input type="number" value="652.7" class="i" id="n3"> </p></td>
+                    <td><p>Matemática<input type="number" value="778.5" class="i" id="n4"> </p></td>
+                </tr>
+                <tr>
+                    <td colspan="2" ><p id="p1" >Redação<input type="number" value="900" class="i" id="n5"> <br> </p></td> 
+                </tr>
+    
+            <input type="button" value="calcular" id="bt1" onclick="média()">
+            <input type="reset" value="limpar" id="btreset">
+            <p id="res" > Resultado... </p>
+    
+        </div>
+    </form>
+    <script>
+        function média() {
+            var l1 = window.document.querySelector('input#n1')
+            var h1 = window.document.querySelector('input#n2')
+            var n1 = window.document.querySelector('input#n3')
+            var m1 = window.document.querySelector('input#n4')
+            var r1 = window.document.querySelector('input#n5')
+            var res = window.document.querySelector('p#res')
+
+            var l = Number(l1.value)
+            var h = Number(h1.value)
+            var n = Number(n1.value)
+            var m = Number(m1.value)
+            var r = Number(r1.value)
+
+            var media1 = (r + m + n + h + l) / 5
+            var media2 = (media1 * 10/100) + media1
+
+            if (media1 > 680){
+                var p1 = ('Parabéns, você tem grandes chances de entrar em uma universidade ')
+             }else{
+                var p1 = ('Você tem boas chances de entrar em uma universidade')
+             }
+           
+            res.innerHTML = `<p> linguagem :${l} <br/>
+                Humanas : ${h}  <br/> Natureza : ${n} <br/>
+                Matemática : ${m} <br/> Redação: ${r} <br/>
+                Média :${media1.toFixed(2)} <br/>  
+                Média bônus de 10% :${media2.toFixed(2)} <br/> 
+                <strong> ${p1} <strong/> <p/>`               
+        }
+        
+    </script>
+</body>
+</body>
+</html>

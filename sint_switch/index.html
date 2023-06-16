@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sint_switch</title>
+</head>
+<body>
+    <form >
+            <p>digite o número do mês : 
+            <input type="number" id="mes">
+            <input type="button" value="click" onclick="mesf()"> 
+            <input type="reset" value="cancelar"></p>
+            <p id="res">o mês digitado foi :  </p>
+    </form>
+    <script>
+        
+        function mesf() {
+         var res = window.document.querySelector('p#res')
+         var mes1 = window.document.getElementById('mes')
+         var mes2 = Number(mes1.value)
+         var nomemes 
+
+            switch (mes2) {
+
+                case 1: nomemes ='janeiro' ; break;
+                case 2: nomemes ='fevereiro' ; break;
+                case 3: nomemes ='maior' ; break;
+                case 4: nomemes ='abril' ; break;
+                case 5: nomemes ='março' ; break;
+                case 6: nomemes ='junho' ; break;
+                case 7: nomemes ='julho'; break;
+                case 8: nomemes ='agosto'; break;
+                case 9: nomemes ='setembro'; break;
+                case 10: nomemes ='outubro'; break;
+                case 11: nomemes ='novembro'; break;
+                case 12: nomemes ='dezembro' ; break;
+                default: nomemes ='valor inválido'; break;
+                
+            } 
+
+            res.innerHTML = `o mês digitado foi : ${nomemes}`
+        }
+    </script>
+</body>
+</html>

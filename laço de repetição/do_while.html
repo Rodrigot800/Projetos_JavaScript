@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Verificar valor maior que 0</h1>
+    <p>Informe um número: <input type="number" id="n1">
+    <input type="button" onclick="cal()" value="Verificar"></p>
+    <p id="res">Resultado...</p>
+    <script>
+        function cal() {
+            var n1 = parseInt(document.getElementById('n1').value);
+            var res1 = document.getElementById('res');
+
+            do {
+                res1.innerHTML += "<p>Valor inválido</p>";
+
+                n1++
+            } while (n1 >=1);
+
+            res1.innerHTML += `<p>${n1} é maior que 0</p>`;
+        }
+    </script>
+</body>
+
+</html>
