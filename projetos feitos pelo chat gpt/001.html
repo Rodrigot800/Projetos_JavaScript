@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 500px;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    input[type="text"] {
+      padding: 6px;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    input[type="number"] {
+      padding: 6px;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Gerenciador de Plantas</h1>
+  
+  <input type="text" id="nomePlanta" placeholder="Nome da planta">
+  <input type="number" id="precoPlanta" placeholder="Preço">
+  <input type="number" id="quantidadePlanta" placeholder="Quantidade">
+  <button onclick="inserirNaTabela()">Inserir na tabela</button>
+
+  <table id="tabelaPlantas">
+    <tr>
+      <th>Nome da Planta</th>
+      <th>Preço</th>
+      <th>Quantidade</th>
+      <th>Total</th>
+      <th>Ação</th>
+    </tr>
+  </table>
+
+<script>
+     function inserirNaTabela() {
+      const nome = document.getElementById('nomePlanta').value;
+      const preco = parseFloat(document.getElementById('precoPlanta').value);
+      const quantidade = parseInt(document.getElementById('quantidadePlanta').value);
+
+      if (nome && preco && quantidade) {
+        const total = preco * quantidade;
+
+        const tabela = document.getElementById('tabelaPlantas');
+        const newRow = tabela.insertRow();
+        newRow.innerHTML = `
+          <td>${nome}</td>
+          <td>${preco}</td>
+          <td>${quantidade}</td>
+          <td>${total.toFixed(2)}</td>
+          <td><button onclick="editarLinha(this)">Editar</button></td>
+        `;
+
+        limparInputs();
+      } else {
+        alert('Por favor, preencha todos os campos!');
+      }
+    }
+
+    function editarLinha(button) {
+      const row = button.parentNode.parentNode;
+      const nome = row.cells[0].textContent;
+      const preco = parseFloat(row.cells[1].textContent);
+      const quantidade = parseInt(row.cells[2].textContent);
+
+      document.getElementById('nomePlanta').value = nome;
+      document.getElementById('precoPlanta').value = preco;
+      document.getElementById('quantidadePlanta').value = quantidade;
+
+      row.remove();
+    }
+
+    function limparInputs() {
+      document.getElementById('nomePlanta').value = '';
+      document.getElementById('precoPlanta').value = '';
+      document.getElementById('quantidadePlanta').value = '';
+    }
+
+    function atualizarLocalStorage() {
+      const tabela = document.getElementById('tabelaPlantas');
+      const dados = [];
+
+      // Percorre as linhas da tabela e armazena os dados em um array
+      for (let i = 1; i < tabela.rows.length; i++) {
+        const row = tabela.rows[i];
+        const nome = row.cells[0].textContent;
+        const preco = parseFloat(row.cells[1].textContent);
+        const quantidade = parseInt(row.cells[2].textContent);
+        dados.push({ nome, preco, quantidade });
+      }
+
+      // Converte o array para uma string JSON e armazena no localStorage
+      localStorage.setItem('dadosTabela', JSON.stringify(dados));
+    }
+
+    function carregarDadosLocalStorage() {
+      const dadosArmazenados = localStorage.getItem('dadosTabela');
+
+      if (dadosArmazenados) {
+        const tabela = document.getElementById('tabelaPlantas');
+        const dados = JSON.parse(dadosArmazenados);
+
+        // Percorre os dados do localStorage e insere na tabela
+        dados.forEach(({ nome, preco, quantidade }) => {
+          const total = preco * quantidade;
+          const newRow = tabela.insertRow();
+          newRow.innerHTML = `
+            <td>${nome}</td>
+            <td>${preco}</td>
+            <td>${quantidade}</td>
+            <td>${total.toFixed(2)}</td>
+            <td><button onclick="editarLinha(this)">Editar</button></td>
+          `;
+        });
+      }
+    }
+
+    // Carrega os dados do localStorage ao carregar a página
+    carregarDadosLocalStorage();
+  </script>
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arrays-1</title>
+    <style>
+        body {
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  text-align: center;
+}
+
+label, input, button {
+  margin: 5px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 5px;
+  background-color: #f4f4f4;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+    </style>
+</head>
+<body>
+    <form id="name-form">
+        <label for="name">Nome:</label>
+        <input type="text" id="name" required>
+        <button type="submit">Adicionar nome</button>
+    </form>
+    <ul id="name-list"></ul>
+
+    <script>
+const nameForm = document.getElementById('name-form')
+const nameInput = document.getElementById('name')
+const nameList =document.getElementById('name-list')
+const names = []
+
+
+nameForm.addEventListener('submit', function (event) {
+    event.preventDefault()
+    const newName = nameInput.value
+    if (newName){
+        names.push(newName)
+        updateNameList()
+        nameInput.value = ''
+    }
+}
+)
+
+function updateNameList() {
+    nameList.innerHTML=''
+    for (const name of names) {
+        const li = document.createElement('li')
+        li.textContent = name
+        nameList.appendChild(li)
+    }
+    
+}
+/*const nameForm = document.getElementById('name-form');
+const nameInput = document.getElementById('name');
+const nameList = document.getElementById('name-list');
+const names = [];
+
+nameForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  const newName = nameInput.value;
+  if (newName) {
+    names.push(newName);
+    updateNameList();
+    nameInput.value = '';
+  }
+});
+
+function updateNameList() {
+  nameList.innerHTML = '';
+  for (const name of names) {
+    const li = document.createElement('li');
+    li.textContent = name;
+    nameList.appendChild(li);
+  }
+}*/
+
+    </script>
+</body>
+</html>

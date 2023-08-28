@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planta Store</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Planta Store</h1>
+  <div>
+    <input type="text" id="plantaInput" placeholder="Nome da planta">
+    <input type="number" id="precoInput" placeholder="Preço">
+    <input type="number" id="quantidadeInput" placeholder="Quantidade">
+    <button onclick="inserirItem()">Inserir</button>
+  </div>
+  <table>
+    <tr>
+      <th>Nome da planta</th>
+      <th>Preço</th>
+      <th>Quantidade</th>
+      <th>Total</th>
+      <th>Ações</th>
+    </tr>
+  </table>
+  <script>
+    // Função para inserir os valores na tabela
+function inserirItem() {
+  const nomePlanta = document.getElementById('plantaInput').value;
+  const precoPlanta = parseFloat(document.getElementById('precoInput').value);
+  const quantidadePlanta = parseInt(document.getElementById('quantidadeInput').value);
+
+  if (!nomePlanta || isNaN(precoPlanta) || isNaN(quantidadePlanta)) {
+    alert('Preencha todos os campos corretamente.');
+    return;
+  }
+
+  const totalPlanta = precoPlanta * quantidadePlanta;
+
+  const tableBody = document.querySelector('table').getElementsByTagName('tbody')[0];
+  const newRow = tableBody.insertRow(tableBody.rows.length);
+
+  const columns = [nomePlanta, precoPlanta.toFixed(2), quantidadePlanta, totalPlanta.toFixed(2), ''];
+  for (let i = 0; i < columns.length; i++) {
+    const cell = newRow.insertCell(i);
+    cell.innerHTML = columns[i];
+  }
+
+  // Adicionando botão para deletar a linha
+  const deleteButton = document.createElement('button');
+  deleteButton.innerText = 'Deletar';
+  deleteButton.addEventListener('click', function() {
+    const row = this.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+    salvarDadosNaLocalStorage();
+  });
+
+  newRow.cells[4].appendChild(deleteButton);
+
+  salvarDadosNaLocalStorage();
+}
+
+// Função para salvar os dados no Local Storage
+function salvarDadosNaLocalStorage() {
+  const tableBody = document.querySelector('table').getElementsByTagName('tbody')[0];
+  const dados = [];
+  for (let i = 0; i < tableBody.rows.length; i++) {
+    const row = tableBody.rows[i];
+    const planta = row.cells[0].innerText;
+    const preco = parseFloat(row.cells[1].innerText);
+    const quantidade = parseInt(row.cells[2].innerText);
+    const total = parseFloat(row.cells[3].innerText);
+
+    dados.push({ planta, preco, quantidade, total });
+  }
+
+  localStorage.setItem('plantaStoreData', JSON.stringify(dados));
+}
+
+// Carregar os dados do Local Storage ao carregar a página
+window.onload = function() {
+  const data = JSON.parse(localStorage.getItem('plantaStoreData'));
+  if (data) {
+    const tableBody = document.querySelector('table').getElementsByTagName('tbody')[0];
+    data.forEach(item => {
+      const newRow = tableBody.insertRow(tableBody.rows.length);
+
+      const columns = [item.planta, item.preco.toFixed(2), item.quantidade, item.total.toFixed(2), ''];
+      for (let i = 0; i < columns.length; i++) {
+        const cell = newRow.insertCell(i);
+        cell.innerHTML = columns[i];
+      }
+
+      // Adicionando botão para deletar a linha
+      const deleteButton = document.createElement('button');
+      deleteButton.innerText = 'Deletar';
+      deleteButton.addEventListener('click', function() {
+        const row = this.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+        salvarDadosNaLocalStorage();
+      });
+
+      newRow.cells[4].appendChild(deleteButton);
+    });
+  }
+};
+
+  </script>
+</body>
+</html>
