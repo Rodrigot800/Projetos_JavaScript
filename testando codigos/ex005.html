@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Programa números perfeitos</h1>
+    <label for="">Número</label>
+    <input type="text" name="" id="N">
+    <input type="button" value="verificar se é perfeito" id="BtVerificação">
+    <h3 id="outDiviso"></h3>
+    <h3 id="outConfirma"></h3>
+    <script>
+        function verificar() {
+            var N = Number(document.getElementById('N').value)
+            var outDivisores = document.getElementById('outDiviso')
+            var outConfirmação = document.getElementById('outConfirma')
+
+            outConfirmação.textContent = ""
+            outDivisores.textContent = ""
+
+            var D = 0;
+
+            var divisoresList = []
+
+            outDivisores.textContent = "divisores do " + N + " : "
+
+            if (N == 0|| isNaN(N)) {
+                alert('valor inválido')
+                return
+            } 
+
+            for ( i =1 ; i < N ; i++) {
+                console.log(i)
+                if ( N % i == 0 ) {
+                    D += i 
+                    divisoresList.push(i)
+                    //outDivisores.textContent += i + " ,"
+                } 
+            }
+           if (divisoresList.length > 0) {
+
+            outDivisores.textContent += divisoresList.toString()
+             
+            if (D == N) {
+                outConfirmação.textContent = N+" é um número perfeito" 
+            } else {
+                outConfirmação.textContent = N+" Esse número não é Perfeito"
+            }
+
+            outDivisores.textContent += " ( SOMA : "+ D +")"
+           }
+        }
+
+        var BtVerifica = document.getElementById('BtVerificação')
+        BtVerifica.addEventListener('click', verificar)
+    </script>
+</body>
+</html>

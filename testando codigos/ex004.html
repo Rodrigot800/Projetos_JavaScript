@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>PROGRAMA - LADOS DE UM TRIÂNGULO</h1>
+    <label >lado A</label>
+    <input type="text" id="inladoA"> <br> 
+    <label >lado B</label>
+    <input type="text" id="inladoB"> <br>
+    <label >lado C</label>
+    <input type="text" id="inladoC"> <br>
+
+    <input type="button" value="verificar lados" id="BTverificarLados">
+
+    <h3 id="outvalidação"></h3>
+    <h3 id="tipo"></h3>
+
+    <script>
+
+        function verificar() {
+            var ladoA = Number(document.getElementById('inladoA').value)
+            var ladoB = Number(document.getElementById('inladoB').value)
+            var ladoC = Number(document.getElementById('inladoC').value)
+            var outvalidação = document.getElementById('outvalidação')
+            var outTipo = document.getElementById('tipo')
+
+            if ((ladoA == 0 || isNaN(ladoA)) || (ladoB == 0 || isNaN(ladoB)) || (ladoC == 0 || isNaN(ladoC))) {
+                document.getElementById('inladoA').value = ""
+                document.getElementById('inladoB').value = ""
+                document.getElementById('inladoC').value = ""
+                
+                alert('valor inválido')
+
+                return
+            } else if ((ladoA <= (ladoB + ladoC)) && (ladoB <= (ladoA + ladoC)) && (ladoC <= (ladoB + ladoA) )){
+
+                outvalidação.textContent = "Lados podem forma um triângulo"
+
+                if ( (ladoA == ladoB) && (ladoB == ladoC) ) {
+
+                    outTipo.textContent = "TIPO : Equiláterio"
+
+                    return
+
+                } else if(( ladoA !== ladoB) && ( ladoB !== ladoC) && ( ladoA !== ladoC)){
+
+                    outTipo.textContent = "TIPO : Escaleno "
+
+                    return
+
+                } else if ((ladoA == ladoB) || (ladoA == ladoC) || (ladoB == ladoA) || (ladoB == ladoC) ||  (ladoC == ladoA) || (ladoC == ladoB) ) {
+                    
+                    outTipo.textContent = "TIPO : Isósceles"
+
+                    return
+                    
+                }
+            } else {
+
+                outvalidação.textContent = "não é um triângulo"
+
+                return
+            }
+
+        }
+
+        const BtVerificação = document.getElementById('BTverificarLados')
+        BtVerificação.addEventListener('click', verificar)
+    </script>
+</body>
+</html>

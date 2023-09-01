@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Programa Caixa Eletrônico</h1>
+    <label for="">valor do saque R$ :</label>
+    <input type="text" name="" id="invalor"> <br>
+    <input type="button" value="calcular" id="calcular">
+    <h3 id="notasde100"></h3>
+    <h3 id="notasde50"></h3>
+    <h3 id="notasde10"></h3>
+    <p></p>
+    <script>
+        function calcularNotas() {
+            var invalor = document.getElementById('invalor')
+            var outnota100 = document.getElementById('notasde100')
+            var outnota50 = document.getElementById('notasde50')
+            var outnota10 = document.getElementById('notasde10')
+
+            var valor = Number(invalor.value)
+            var nota100 , nota50, nota10
+
+
+            if  (invalor  == 0 || !isNaN(invalor)) {
+                invalor.focus()
+                document.getElementById('invalor').value = ""
+                alert('valor em válido')
+            } else{
+                nota100 = Math.floor(valor/100)
+                nota50 = Math.floor((valor%100)/ 50 )
+                nota10 = (((valor%100)%50)/10)
+
+                if (nota10%1 !== 0) {
+                    alert('valor inválido para saque')
+                    return
+                }
+
+                outnota10.textContent = nota10 +" notas de 10 R$";
+
+                outnota50.textContent = nota50 +" notas de 50 R$";
+
+                outnota100.textContent = nota100 +" notas de 100 R$";
+
+ 
+                console.log(`${nota100}`)
+                console.log(`${nota50}`)
+                console.log(`${nota10}`)
+                
+            }
+            
+        }
+        var btcalcular = document.getElementById('calcular')
+        btcalcular.addEventListener('click', calcularNotas)
+
+    </script>
+</body>
+</html>
