@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Revenda Herbie</h1>
+    <label for="">Modelo:</label>
+    <input type="text" id="inModelo"><br>
+    
+    <p>Preço R$: <input type="text" id="inPreço"><button id="BtAdicionar">Adicionar</button></p>
+
+    <Button type="button" id="Btlistar">listar Todos</Button> <button type="button" id="Btfiltrar">filtrar preço</button>
+
+    <pre id="outLista"></pre>
+
+    <script>
+        var carros = []
+        function AdicionarCarros() {
+            var inModelo = document.getElementById('inModelo') 
+            var inPreço = document.getElementById('inPreço') 
+
+            var modelo = inModelo.value
+            var preço = Number(inPreço.value)
+
+            if (modelo == "" || preço == 0 || isNaN(preço)) {
+                alert("valore(s) inválidos ...")
+                inModelo.focus()
+                return
+            }
+            carros.push({modelo: modelo, preço: preço})
+            
+            inModelo.value = ""
+            inPreço.value = ""
+            inModelo.focus
+
+            listarTodos()
+
+        }
+        var BtAdicionar = document.getElementById('BtAdicionar')
+        BtAdicionar.addEventListener('click', AdicionarCarros )
+
+        function filtrarPreços() {
+
+            var maximo = Number(prompt("Qual o valor máximo que o cliente quer pagar ?"))
+
+            if (maximo == 0 || isNaN(maximo)) {
+                return
+            }
+
+            if (carros.length == 0) {
+                alert("não há carros na lista")
+                return
+            }
+
+            var listar = ""
+
+            for (let i = 0; i < carros.length; i++) {
+                if (carros[i].preço <= maximo) {
+                    
+                    listar += carros[i].modelo + " - R$ " + carros[i].preço.toFixed(2) + "\n"
+                }
+            }
+
+            var outlista = document.getElementById('outLista')
+
+            if (listar == "") {
+                outlista.textContent = "Não há carros com preço até R$" + maximo.toFixed(2)
+            } else {
+                outlista.textContent = "Carros até R$ " + maximo.toFixed(2) +"\n------------------------\n" + listar;
+
+            }
+        }
+        var Btfiltrar = document.getElementById('Btfiltrar')
+        Btfiltrar.addEventListener('click', filtrarPreços)
+
+        function listarTodos() {
+
+            if (carros.length == 0) {
+                alert("não há carros na lista")
+                return
+            }
+
+            var listar = ""
+
+            
+            for (let i = 0; i < carros.length; i++) {
+                listar += carros[i].modelo + " - R$ " + carros[i].preço.toFixed(2) + "\n"
+            }
+
+            document.getElementById('outLista').textContent = listar
+
+        }
+        var Btlistar = document.getElementById('Btlistar')
+        Btlistar.addEventListener('click', listarTodos)
+
+    </script>
+
+</body>
+</html>
