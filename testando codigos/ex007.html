@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .oculta{
+            display: none ;
+        }
+        .exibi{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <label for="">nome:</label>
+    <input type="text" id="Number">
+    <button type="button" id="BtApostar">aposta</button>
+    <input type="button" value="Jogar Novamente" id="btJogar"
+    class="oculta">
+
+    <h3>ERROS: <span id="outErro">0</span></h3>
+    <h3> chances: <span id="outChance">6</span></h3>
+    <h3 id="outDicas">dicas: está entre 1 e 100</h3>
+
+    <script>
+        var erro = [ ]
+        
+        var sorteado = Math.floor(Math.random() * 100 ) + 1
+
+        const CHANCES = 6
+
+        function apostarNumero() {
+            var inNumber = document.getElementById('Number')
+            var Numero = Number(inNumber.value)
+
+            if (Numero <= 0 || Numero > 100 || isNaN(Numero)) {
+                alert('valor inválido...')
+                document.getElementById('Number').focus()
+                return
+            }
+
+            var outErros = document.getElementById('outErro')
+            var outChances = document.getElementById('outChance')
+            var outDicas = document.getElementById('outDicas')
+
+            if (Numero == sorteado) {
+                alert('parabéns, você acertou !!!')
+                BtAposta.disabled = true
+                BtJogar.className = "exibi"
+                outDicas.textContent = "parabéns !! Número sortiado : "+ sorteado
+
+            } else {
+                if (erro.indexOf(Numero)>= 0) {
+                    alert("Você já apostou o número "+ Numero +". Tente outro")
+                } else {
+                    erro.push(Numero)
+
+                    var numErro = erro.length
+                    var numChances = CHANCES - numErro;
+                    outErros.textContent = numErro + "(" + erro.join(", ") + ")"
+                    outChances.textContent = numChances
+
+                    if (numChances == 0) {
+                        alert("Suas chances acabaram...");
+                        BtAposta.disabled = true;
+                        btJogar.className = "exibe";
+                        outDicas.textContent = "Game Over!! Número Sorteado: " +
+                        sorteado;
+                    } else {
+                        var dica = Numero < sorteado ? "Maior" : "Menor"
+                        outDicas.textContent = "Dica: Tente um número " + dica + " que "+ Numero;
+                    }
+                }
+
+            }
+
+            document.getElementById('Number').value = "";
+            inNumber = document.getElementById('Number').focus();
+        }
+
+        function jogarNovamente() {
+                location.reload()
+        }
+        var BtAposta = document.getElementById('BtApostar')
+        BtAposta.addEventListener('click', apostarNumero )
+
+        var BtJogar = document.getElementById('btJogar')
+        BtJogar.addEventListener('click', jogarNovamente)
+    </script>
+</body>
+</html>

@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #outEmAtendimento{
+            color: blue;
+            font-size: 1.2em;
+        }
+    </style>
 </head>
 <body>
     <h1>Consutório Odontológico</h1>
@@ -11,10 +17,10 @@
     <input type="button" value="Adicionar" id="inAdicionar"> 
     <input type="button" value="Urgência" id="inUrgência">
     <input type="button" value="Atender" id="inAtender">
-    <h3 id="outEmAtendimento"></h3>
-    <h3 id="outPacientes"></h3>
+    <h3>Em Atendimento :<span id="outEmAtendimento"></span></h3>
+    <pre id="outPacientes"></pre>
     <script>
-        var pacientes = []
+        var Nomes = []
 
         function AdicionarPaciente() {
             var pacientes = document.getElementById('inPaciente').value
@@ -25,12 +31,83 @@
                 document.getElementById('inPaciente').value.focus()
                 return
             }
-            
 
+            var lista = ""
+            
+            Nomes.push(pacientes)
+
+            for ( i = 0; Nomes.length > i ; i++) {
+                lista += (i+1)+ ". " + Nomes[i] +"\n\n"
+            }
+
+            outPacientes.textContent = lista
+
+            document.getElementById('inPaciente').value = ""
+            document.getElementById('inPaciente').focus() 
 
         }
+
+        function urgênciaPaciente() {
+            var pacientes = document.getElementById('inPaciente').value
+            var outPacientes = document.getElementById('outPacientes')
+
+            if (pacientes == '') {
+                alert("informe o nome do paciente")
+                document.getElementById('inPaciente').value.focus()
+                return
+            }
+
+            var lista = ""
+            
+            Nomes.unshift(pacientes)
+
+            for ( i = 0; Nomes.length > i ; i++) {
+                lista += (i+1)+ ". " + Nomes[i] +"\n\n"
+            }
+
+            outPacientes.textContent = lista
+
+            document.getElementById('inPaciente').value = ""
+        }
+
+        function inAtender() {
+
+            var pacientes = document.getElementById('outPacientes').value
+            var outAtender = document.getElementById('outEmAtendimento')
+
+            if (Nomes.length == 0) {
+                alert("não há paciente na lista de espera")
+                document.getElementById('inPaciente').value.focus()
+                return
+            }
+
+
+            var atender = Nomes.shift()
+
+            outAtender.textContent = atender
+
+            var lista = ""
+
+            for ( i = 0; Nomes.length > i ; i++) {
+                lista += (i+1)+ ". " + Nomes[i] +"\n\n"
+            }
+
+
+            outPacientes.textContent = lista+"."
+
+            document.getElementById('inPaciente').value = ""
+            document.getElementById('inPaciente').focus() 
+
+        }
+
         const BtAdicionar = document.getElementById('inAdicionar')
         BtAdicionar.addEventListener('click', AdicionarPaciente)
+
+        const btUrgencia = document.getElementById('inUrgência')
+        btUrgencia.addEventListener('click', urgênciaPaciente)
+
+        const btatender = document.getElementById('inAtender')
+        btatender.addEventListener('click', inAtender)
     </script>    
 </body>
 </html>
