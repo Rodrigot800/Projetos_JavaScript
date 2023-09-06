@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Exemplo 6.5</title>
+</head>
+<body>
+<h1>Programa E-mail Institucional</h1>
+<p>Funcionário:
+<input type="text" id="inFuncionario">
+</p>
+<input type="button" value="Gerar E-mail do Funcionário"
+id="btGerar">
+<h3 id="outEmail"></h3>
+<script>
+    function gerarEmail() {
+        var inFuncionario = document.getElementById('inFuncionario')
+        var outEmail = document.getElementById('outEmail')
+
+        var Funcionário = inFuncionario.value 
+
+        if (Funcionário == "" || Funcionário.indexOf("") == -1) {
+            alert("informe o nome completo do funcionário ...")
+            inFuncionario.focus()
+            return
+        }
+
+        var partes = Funcionário.split(" ")
+        var email = ""
+        var tam = partes.length
+
+        for (let i = 0; i < tam -1; i++) {
+            email += partes[i].charAt(0)
+        }
+
+        email += partes[tam-1] + "@empresa.com.br"
+
+        outEmail.textContent = "Email: " + email
+  }
+    var btGerar = document.getElementById('btGerar')
+    btGerar.addEventListener('click', gerarEmail)
+</script>
+</body>
+</html>

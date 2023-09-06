@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Programa Nome no Crachá</h1>
+<p>Nome do Participante:
+<input type="text" id="inNome">
+</p>
+<input type="button" value="Gerar Crachá" id="btGerar">
+<h3 id="outCracha"></h3>
+<script >
+
+    function gerarCracha() {
+        var inNome = document.getElementById('inNome')
+        var outCracha = document.getElementById('outCracha')
+
+        var nome = inNome.value 
+
+        if (nome == "" || nome.indexOf(" ") == -1) {
+            alert("informe um nome completo")
+            inNome.focus()
+            return
+        }
+
+        var priEspaco = nome.indexOf(" ")
+        var ultEspaco = nome.lastIndexOf(" ")
+
+        var cracha = nome.substr(0, priEspaco) + nome.substr(ultEspaco)
+
+        outCracha.textContent = "Crachá :" + cracha
+
+        
+    }   
+
+    var btGerar = document.getElementById("btGerar")
+    btGerar.addEventListener('click', gerarCracha)
+
+</script>
+</body>
+</html>
