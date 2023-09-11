@@ -1,40 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-    crossorigin="anonymous"
-  />
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
     <title>Document</title>
 
     <style>
-        .row{
-            margin: auto;
-        }
-        pre{
-            font-size: 1.5em;
-        }
-        p{
-            font-size: 1.2em;
-        }
+      .row {
+        margin: auto;
+      }
+      pre {
+        font-size: 1.5em;
+      }
+      p {
+        font-size: 1.2em;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="conteiner-fluid">
-        <div class="row">
-            <div class="col-sm-5">
-                <h1>Compras da Semana</h1>
-                <p>Produtos : <input type="text" name="" id="inProdutos" class="form-control"></p>
+      <div class="row">
+        <div class="col-sm-5">
+          <h1>Compras da Semana</h1>
+          <p>
+            Produtos :
+            <input type="text" name="" id="inProdutos" class="form-control" />
+          </p>
 
-                <input type="button" value="Adicionar Produto" class="btn btn-primary"> <input type="button" value="Limpar Lista" class="btn btn-danger">
+          <input
+            type="button"
+            value="Adicionar Produto"
+            class="btn btn-primary"
+            id="btAdicionar"
+          />
+          <input type="button" value="Limpar Lista" class="btn btn-danger" id="btLimpar" />
 
-                <pre> Lista vazia </pre>
-            </div>
+          <pre id="outLista"> Lista vazia </pre>
         </div>
+      </div>
     </div>
-</body>
+    <script>
+      function mostrarLista() {
+        var outLista = document.getElementById("outLista");
+
+        var partes = localStorage.getItem("ProdutosLista").split(";");
+        var Lista = "";
+
+        for (let i = 0; i < partes.length; i++) {
+          Lista += partes[i] + "\n";
+        }
+
+        outLista.textContent = Lista;
+      }
+      function AdicionarProduto() {
+        var Produto = inProdutos.value;
+
+        if (Produto == "") {
+          alert("Adicione um Produto");
+          return;
+        }
+        if (verExiste(Produto)) {
+          alert("Esse produto já foi adicionado");
+          return;
+        }
+
+        if (localStorage.getItem("ProdutosLista")) {
+          var Produtos = localStorage.getItem("ProdutosLista") + ";" + Produto;
+
+          localStorage.setItem("ProdutosLista", Produtos);
+        } else {
+          localStorage.setItem("ProdutosLista", Produto);
+        }
+
+        mostrarLista();
+
+        inProdutos.value = "";
+        inProdutos.focus();
+      }
+
+      function verExiste(Produto) {
+        var Existe = false;
+
+        if (localStorage.getItem("ProdutosLista")) {
+          var Produtos = localStorage.getItem("ProdutosLista").split(";");
+
+          if (Produtos.indexOf(Produto) >= 0) {
+            Existe = true;
+          }
+        }
+
+        return Existe;
+      }
+
+      function limparLista() {
+        localStorage.removeItem("ProdutosLista")
+
+        outLista.textContent = ""
+      }
+
+      mostrarLista();
+
+      var inProdutos = document.getElementById("inProdutos");
+      var btlimpar = document.getElementById("btLimpar")
+      btlimpar.addEventListener("click", limparLista)
+      var btAdicionar = document.getElementById("btAdicionar");
+      btAdicionar.addEventListener("click", AdicionarProduto);
+      inProdutos.addEventListener("keypress", function (tecla) {
+        if (tecla.keyCode == 13) {
+          AdicionarProduto();
+        }
+      });
+    </script>
+  </body>
 </html>
