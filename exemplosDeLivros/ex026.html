@@ -104,11 +104,11 @@
         outLista.textContent = ""
       }
 
-      mostrarLista();
+     
 
       var inProdutos = document.getElementById("inProdutos");
-      var btlimpar = document.getElementById("btLimpar")
-      btlimpar.addEventListener("click", limparLista)
+      var btLimpar = document.getElementById("btLimpar")
+      btLimpar.addEventListener("click", limparLista)
       var btAdicionar = document.getElementById("btAdicionar");
       btAdicionar.addEventListener("click", AdicionarProduto);
       inProdutos.addEventListener("keypress", function (tecla) {
@@ -116,6 +116,8 @@
           AdicionarProduto();
         }
       });
+
+      mostrarLista();
     </script>
   </body>
 </html>
