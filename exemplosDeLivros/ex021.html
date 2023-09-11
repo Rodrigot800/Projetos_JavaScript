@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .exibe {
+        display: block;
+      }
+      .ocultar {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Pizzaria Avenida - Controle de Pedidos</h1>
+    <p>
+      Item do Pedido:
+      <input type="radio" name="produto" id="rbPizza" checked autofocus />
+      Pizza
+      <input type="radio" name="produto" id="rbBebida" /> Bebida
+      <br />
+      <span>Item:</span>
+      <select id="inPizza">
+        <option value="media">Pizza Média</option>
+        <option value="grande">Pizza Grande</option>
+        <option value="familia">Pizza Família</option>
+      </select>
+      <select id="inBebida" class="ocultar">
+        <option value="refri">Refrigerante Litro</option>
+        <option value="suco">Jarra de Suco</option>
+        <option value="agua">Água Mineral</option>
+      </select>
+    </p>
+    <p>
+      Detalhes do Item:
+      <input type="text" id="inDetalhes" class="detalhes" />
+      <input type="button" value="Adicionar" id="btAdicionar" />
+    </p>
+    <pre id="outPedido"></pre>
+    <script>
+      var itens = [];
+
+      function trocarItens() {
+        var inPizza = document.getElementById("inPizza");
+        var inBebida = document.getElementById("inBebida");
+
+        if (inPizza.checked) {
+          inBebida.style.display = "none";
+          inPizza.style.display = "block";
+        } else {
+          inPizza.style.display = "none";
+          inBebida.className = "block";
+        }
+      }
+
+      function mostrarNumSabores() {
+        var rbPizza = document.getElementById("rbPizza");
+        if (rbPizza.checked) {
+          var Pizza = inPizza.value;
+
+          var num = Pizza == "media" ? 2 : Pizza == "grande" ? 3 : 4;
+
+          inDetalhes.placeholder = "Até" + num + " Sabores ";
+        }
+      }
+
+      function adicionarItem() {
+        var inPizza = document.getElementById("inPizza");
+        var inBebida = document.getElementById("inBebida");
+        var outPedido = document.getElementById("outPedido");
+
+        if (rbPizza.checked) {
+          var num = inPizza.selectedIndex;
+          var produto = inPizza.options[num].text;
+        } else {
+          var num = inBebida.selectedIndex;
+          var produto = inBebida.options[num].text;
+        }
+
+        var detalhes = inDetalhes.value;
+        itens.push(produto + "(" + detalhes + ")");
+        outPedido.textContent = itens.join("\n ");
+        limparCampos();
+      }
+
+      function limparCampos() {
+        rbPizza.checked = true;
+        inBebida.className = "ocultar";
+        inPizza.className = "exibe";
+        inDetalhes.value = "";
+        rbPizza.focus();
+      }
+
+      var btAdicionar = document.getElementById("btAdicionar");
+      btAdicionar.addEventListener("click", adicionarItem);
+
+      var inDetalhes = document.getElementById("inDetalhes");
+      inDetalhes.addEventListener("focus", mostrarNumSabores);
+
+      inDetalhes.addEventListener("blur", function () {
+        inDetalhes.placeholder = "";
+      });
+
+      inDetalhes.addEventListener("keyCode", function (tecla) {
+        if (tecla.keyCode == 13) {
+          adicionarItem();
+        }
+      });
+
+      var rbPizza = document.getElementById("rbPizza");
+      rbPizza.addEventListener("change", trocarItens);
+
+      var rbBebida = document.getElementById("rbBebida");
+      rbBebida.addEventListener("change", trocarItens);
+    </script>
+  </body>
+</html>

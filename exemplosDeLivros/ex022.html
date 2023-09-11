@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Programa Senha inicial</h1>
+
+    <p>Nome do aluno: <input type="text" name="" id="inName" /></p>
+    <br />
+    <input type="button" value="Gerar Senha" id="btGerarSenha" />
+    <pre id="outSenha">Senha inicial:</pre>
+
+    <script>
+      function validarNome() {
+        var inName = document.getElementById("inName");
+        var Name = inName.value;
+
+        if (Name == "" || Name.indexOf(" ") == -1) {
+          alert("informe seu nome completo");
+          return;
+        }
+
+        exibir(Name);
+      }
+
+      function obterSobrenome(Name) {
+        var partes = [];
+
+        partes = Name.split(" ");
+        var tam = partes.length;
+
+        if (tam > 2) {
+          var sobreNome = partes[tam - 1];
+          return sobreNome;
+        } else {
+          alert("informe seu nome completo");
+          return 0;
+        }
+      }
+
+      function contarVogais(Name) {
+        var vogais = Name.match(/[aeiouAEIOU]/g).length;
+        return vogais;
+      }
+
+      function exibir(Name) {
+        var outSenha = document.getElementById("outSenha");
+
+        var sobreNome = obterSobrenome(Name);
+
+        var numVogais = contarVogais(Name);
+        if (sobreNome == 0) {
+          return;
+        } else {
+          outSenha.textContent =
+            "Senha : " +
+            sobreNome +
+            (numVogais < 10 ? "0" + numVogais : numVogais);
+        }
+      }
+
+      var btGerarSenha = document.getElementById("btGerarSenha");
+      btGerarSenha.addEventListener("click", validarNome);
+
+      var inName = document.getElementById("inName");
+      inName.addEventListener("keypress", function (tecla) {
+        if (tecla.keyCode == 13) {
+          validarNome();
+        }
+      });
+    </script>
+  </body>
+</html>

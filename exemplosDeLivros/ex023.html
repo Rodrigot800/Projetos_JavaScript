@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .ocultar {
+        display: none;
+      }
+      .exebir {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Veterinária Avenida</h1>
+
+    <p>valor da Vacina : <input type="text" name="" id="inValorVacina" /></p>
+    <p>
+      Possui convênio : <input type="radio" name="convênio" id="rbsim" /> Sim
+      <input type="radio" name="convênio" id="rbnão" checked autofocus /> Não
+    </p>
+
+    <p id="inConvênio" class="ocultar">
+      convênio:
+      <select id="valueConvênio">
+        <option value="1">Saúde animal</option>
+        <option value="2">Amigo dos animais</option>
+      </select>
+    </p>
+
+    <input type="button" value="Calculardesconto" id="CalcularDesconto" />
+
+    <pre id="outdesconto"></pre>
+
+    <script>
+      function trocarConvênio() {
+        var inConvênio = document.getElementById("inConvênio");
+
+        if (rbSim.checked) {
+          inConvênio.className = "exebir";
+        } else {
+          inConvênio.className = "ocultar";
+        }
+      }
+
+      function CalcularDesconto() {
+        
+        var valueConvênio = document.getElementById("valueConvênio");
+        var outDesconto = document.getElementById("outdesconto");
+
+        var valorVacina = Number(inValorVacina.value);
+
+        if (valorVacina == 0 || isNaN(valorVacina)) {
+          alert("valor inválido...");
+          return;
+        }
+
+        var num = valueConvênio.selectedIndex;
+
+        if (rbSim.checked) {
+          if (num == 0) {
+            var Desconto = valorVacina * 0.5;
+          } else if (num == 1) {
+            var Desconto = valorVacina * 0.8;
+          }
+        } else {
+          var Desconto = valorVacina * 0.9;
+        }
+
+        outDesconto.textContent =
+          "Desconto R$:" +
+          (valorVacina - Desconto).toFixed(2) +
+          "\nA pagar R$:" +
+          Desconto.toFixed(2);
+      }
+      var btCalcular = document.getElementById("CalcularDesconto");
+      var inValorVacina = document.getElementById("inValorVacina");
+      var rbSim = document.getElementById("rbsim");
+      var rbNão = document.getElementById("rbnão");
+      btCalcular.addEventListener("click", CalcularDesconto);
+      rbNão.addEventListener("change", trocarConvênio);
+      rbSim.addEventListener("change", trocarConvênio);
+      inValorVacina.addEventListener('keypress', function(tecla) {
+        if (tecla.keyCode == 13) {
+            CalcularDesconto()
+        }
+      })
+    </script>
+  </body>
+</html>

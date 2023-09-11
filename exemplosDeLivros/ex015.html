@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-<h1> Programa Valida Senha </h1>
-<p> Senha:
-<input type="text" id="inSenha">
-</p>
-<input type="button" value="Verificar Validade da Senha"
-id="btVerificar">
-<h3 id="outResposta"></h3>
-<script>
-    function verSenha() {
-            var inSenha = document.getElementById('inSenha')
-            var outResposta = document.getElementById('outResposta')
+  </head>
+  <body>
+    <h1>Programa Valida Senha</h1>
+    <p>
+      Senha:
+      <input type="text" id="inSenha" />
+    </p>
+    <input type="button" value="Verificar Validade da Senha" id="btVerificar" />
+    <h3 id="outResposta"></h3>
+    <script>
+      function verSenha() {
+        var inSenha = document.getElementById("inSenha");
+        var outResposta = document.getElementById("outResposta");
 
-            var senha = inSenha.value
-            var erros = []
+        var senha = inSenha.value;
+        var erros = [];
 
-            if (senha.lengh < 8 || senha.lengh > 15) {
-                erros.push("pussuir entre 8 e 15 caracteres")
-            }
-            if (senha.match(/[0-9]/g) == null) {
-                erros.push("possuir números ( no mínimo 1)")
-            }
+        if (senha.lengh < 8 || senha.lengh > 15) {
+          erros.push("pussuir entre 8 e 15 caracteres");
+        }
+        if (senha.match(/[0-9]/g) == null) {
+          erros.push("possuir números ( no mínimo 1)");
+        }
 
-            if (!senha.match(/[a-z]/g)) {
-                erros.push("possuir letras minúsculas (mínimo uma 1)")
-            }
-            if (!senha.match(/[A-Z]/g) || senha.match(/[A-Z]/g).length == 1) {
-                erros.push("possuir letras maiúsculas (mínimo uma 2)")
-            }
-            if (!senha.match(/[\W|_]/g)) {
-                erros.push("possuir símbolos (mínimo 1)")
-            }
-            if (erros.length == 0) {
-                outResposta.textContent = "ok! senha válida"
-            }
-            else{
-                outResposta.textContent = " Erro ... A senha deve "+ erros.join(", ")
-            }
-    }
-    var btVerificar = document.getElementById('btVerificar')
-    btVerificar.addEventListener('click', verSenha)
-</script>
-</body>
+        if (!senha.match(/[a-z]/g)) {
+          erros.push("possuir letras minúsculas (mínimo uma 1)");
+        }
+        if (!senha.match(/[A-Z]/g) || senha.match(/[A-Z]/g).length == 1) {
+          erros.push("possuir letras maiúsculas (mínimo uma 2)");
+        }
+        if (!senha.match(/[\W|_]/g)) {
+          erros.push("possuir símbolos (mínimo 1)");
+        }
+        if (erros.length == 0) {
+          outResposta.textContent = "ok! senha válida";
+        } else {
+          outResposta.textContent =
+            " Erro ... A senha deve " + erros.join(", ");
+        }
+      }
+      var btVerificar = document.getElementById("btVerificar");
+      btVerificar.addEventListener("click", verSenha);
+    </script>
+  </body>
 </html>

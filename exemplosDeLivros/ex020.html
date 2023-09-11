@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Multa de Trânsito</h1>
+    <p>Data da infração:<input type="date" name="" id="inDataInf" /></p>
+    <p>Valor da multa R$:<input type="text" name="" id="valorMulta" /></p>
+    <input
+      type="button"
+      value="calcular Data limite e valor do desconto"
+      id="btCalcular"
+    />
+
+    <h3 id="outDesc"></h3>
+    <h3 id="outTemp"></h3>
+
+    <script>
+      function CALCULAR() {
+        var inDataInf = document.getElementById("inDataInf");
+        var inValor = document.getElementById("valorMulta");
+        var outDesc = document.getElementById("outDesc");
+        var outTemp = document.getElementById("outTemp");
+
+        var data = inDataInf.value;
+        var valor = inValor.value;
+
+        if (data == "" || valor == 0 || isNaN(valor)) {
+          alert("informe um valor");
+
+          return;
+        }
+
+        var dataLimite = new Date();
+        var partes = data.split("-");
+
+        dataLimite.setDate(Number(partes[2]));
+        dataLimite.setMonth(Number(partes[1] - 1));
+        dataLimite.setFullYear(Number(partes[0]));
+
+        var dia = dataLimite.getDate();
+
+        dataLimite.setDate(dia + 90);
+
+        var dia = dataLimite.getDate();
+        var mes = dataLimite.getMonth() + 1;
+        var ano = dataLimite.getFullYear();
+
+        var valor = valor * 0.8;
+
+        outTemp.textContent =
+          "Data limite para o pagamento com desconto :" +
+          (dia < 10 ? "0" + dia : dia) +
+          "/" +
+          (mes < 10 ? "0" + mes : mes) +
+          "/" +
+          ano;
+
+        outDesc.textContent = "valor de desconto:" + valor.toFixed(2);
+
+        /*var dia = date.getDate()
+            var mes = date.getMonth() +1
+            var ano = date.getFullYear()
+
+            if (dia <  10 ) {
+                dia = "0" + dia
+            }
+            if (mes < 10) {
+                mes = "0" + mes
+            }  console.log("data :" + dia + "/" + mes + "/" +ano)*/
+      }
+
+      var btCalcular = document.getElementById("btCalcular");
+      btCalcular.addEventListener("click", CALCULAR);
+    </script>
+  </body>
+</html>

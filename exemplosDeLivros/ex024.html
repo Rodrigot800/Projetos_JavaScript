@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+    <style>
+      img {
+        max-width: 100%;
+      }
+      pre {
+        font-size: 1.2em;
+      }
+      .oculta {
+        display: none;
+      }
+      .exibe {
+        display: inline;
+      }
+      .coresBrasil {
+        color: black;
+        background-color: red;
+      }
+      .coresPelotas {
+        color: blue;
+        background-color: yellow;
+      }
+      .coresFarroupilha {
+        color: green;
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row" id="divTitulo">
+        <div class="col-sm-7">
+          <h1>Loja de Esportes Avenida</h1>
+          <h2>Produtos esportivos em geral</h2>
+        </div>
+        <div class="col-sm-3">
+          <h5>Qual clube você torce?</h5>
+          <input type="radio" name="clube" id="rbBrasil" /> Brasil
+          <br />
+          <input type="radio" name="clube" id="rbPelotas" /> Pelotas
+          <br />
+          <input type="radio" name="clube" id="rbFarroupilha" />
+          Farroupilha
+        </div>
+        <div class="col-sm-2">
+          <img id="imgClube" class="oculta" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+            var rbBrasil = document.getElementById("rbBrasil");
+            var rbPelotas = document.getElementById("rbPelotas");
+            var rbFarroupilha = document.getElementById("rbFarroupilha");
+
+            function contarNumVisitas() {
+              if (!localStorage.getItem("VisitaNumber")) {
+                alert("Muito Bem-Vindo! Esta é a sua primeira visita ao nosso site.");
+                Number(localStorage.setItem("VisitaNumber", 1));
+              } else {
+                var VisitaNumber = Number(localStorage.getItem("VisitaNumber"));
+                var soma = VisitaNumber + 1
+                alert("Que bom que você voltou! Esta é a sua visita de número " + soma + " ao nosso  site.")
+                Number(localStorage.setItem("VisitaNumber", soma))
+                return;
+              }
+            }
+
+            contarNumVisitas();
+
+            function TrocarClube() {
+              var imgClube = document.getElementById("imgClube");
+              var divTitulo = document.getElementById("divTitulo");
+
+              var clube;
+
+              if (rbBrasil.checked) {
+                clube = "Brasil";
+              } else if (rbPelotas.checked) {
+                clube = "Pelotas";
+              } else {
+                clube = "Farroupilha";
+              }
+
+              divTitulo.className = "row cores" + clube;
+              imgClube.src = "img/" + clube.toLowerCase() + ".png";
+              imgClube.className = "exibe";
+              imgClube.alt = "simbolo do " + clube;
+
+              localStorage.setItem("clube", clube);
+            }
+
+            function verificarClube() {
+              if (localStorage.getItem("clube")) {
+                var clube = localStorage.getItem("clube");
+
+                if (clube == "Brasil") {
+                  rbBrasil.checked = true;
+                } else if (clube == "Pelotas") {
+                  rbPelotas.checked = true;
+                } else {
+                  rbFarroupilha.checked = true;
+                }
+              }
+              TrocarClube();
+            }
+
+            verificarClube();
+
+            rbBrasil.addEventListener("change", TrocarClube);
+            rbPelotas.addEventListener("change", TrocarClube);
+            rbFarroupilha.addEventListener("change", TrocarClube);
+    </script>
+  </body>
+</html>
