@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+    <style>
+      h1 {
+        border-bottom-style: inset;
+      }
+      img.imgProg {
+        max-width: 100%;
+      }
+      .tarefaSelecionada {
+        color: red;
+        font-style: italic;
+      }
+      .tarefaNormal {
+        color: black;
+      }
+      img.moeda1_00 {
+        height: 84px;
+        width: 84px;
+        margin-bottom: 5px;
+      }
+      img.moeda0_50 {
+        height: 66px;
+        width: 66px;
+        margin-bottom: 5px;
+      }
+      img.moeda0_25 {
+        height: 76px;
+        width: 76px;
+        margin-bottom: 5px;
+      }
+      img.moeda0_10 {
+        height: 60px;
+        width: 60px;
+        margin-bottom: 5px;
+      }
+      .aDireita {
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6" id="divQuadro">
+          <h1>Tarefas do Dia (a realizar)</h1>
+          <p>
+            <label for="inTarefa">Tarefa:</label>
+            <input type="text" class="form-control" id="inTarefa" autofocus />
+          </p>
+          <p>
+            <input
+              type="button"
+              class="btn btn-primary"
+              value="Adicionar &#10003;"
+              id="btAdicionar"
+            />
+            <input
+              type="button"
+              class="btn btn-info"
+              value="Selecionar &#8645;"
+              id="btSelecionar"
+            />
+            <input
+              type="button"
+              class="btn btn-danger"
+              value="Retirar Selecionada &#10007;"
+              id="btRetirar"
+            />
+            <input
+              type="button"
+              class="btn btn-success"
+              value="Gravar &#9673;"
+              id="btGravar"
+            />
+          </p>
+        </div>
+      </div>
+    </div>
+    <script>
+        
+    </script>
+  </body>
+</html>
