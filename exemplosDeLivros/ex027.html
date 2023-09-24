@@ -89,7 +89,30 @@
       </div>
     </div>
     <script>
-        
+        function adicionarTarefa() {
+          var inTarefa = document.getElementById("inTarefa")
+
+          var Tarefa = inTarefa.value 
+
+          if (Tarefa == "" ) {
+            alert("informe a tarefa")
+            inTarefa.focus()
+
+            return
+          }
+
+          var divQuadro = document.getElementById("divQuadro")
+          var texto = document.createElement(tarefa)
+          var h5 = document.createElement("h5")
+          h5.appendChild(texto)
+          divQuadro.appendChild(h5)
+
+          inTarefa.value = ""
+          inTarefa.focus()
+        }
+
+        var btAdicionar = document.getElementById("btAdicionar")
+        btAdicionar.addEventListener("click", adicionarTarefa)
     </script>
   </body>
 </html>
