@@ -55,6 +55,7 @@ console.log(
 );
 
 // o métado join transforma uma array em e um separador
-let separarArray = array.join( "eu gustumm" )
+let separarArray = letrasMaiusculas.join( ", " )
 
+console.log(separarArray)
 
