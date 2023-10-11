@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercícios de funçoes</title>
+</head>
+
+<body>
+    <script>
+        function slowDown(velocity, printer) {
+            let desacelerar = 20
+
+            while (velocity > 0) {
+                printer(velocity)
+                velocity -= desacelerar
+            }
+            if (velocity <= 0) {
+                printer(0)
+            }
+            alert("nave parada.as comportas podem ser abertas")
+        }
+
+        let spaceshipeVelocity = 0
+
+        slowDown(spaceshipeVelocity, function (velocity) {
+            console.log(`velocidade atual : ${velocity}`)
+        })
+    </script>
+</body>
+
+</html>
