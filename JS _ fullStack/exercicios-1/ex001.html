@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let spaceshipe = prompt ("digite o nome da nave")
+
+        let spaceshipeVelocity = 0
+
+        let chosenOption
+
+        function showMenu() {
+            let option
+            while ( option != "1" && option != "2" && option != "3" && option != "4" ) {
+                option = prompt (" o que deseja fazer ? \n1- acelerar a nave em 5km/s\n2- desacelerar a nave em 5 km/s\n3- imprimir dados de bordo\n4 - sair do programa ")
+            }
+        }
+        showMenu()
+    </script>
+</body>
+</html>
