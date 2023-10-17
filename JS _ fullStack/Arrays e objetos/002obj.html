@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let nave = {
+            velocidade: 0,
+            acelNave: function (acelaração) {
+                this.velocidade += acelaração
+            }
+        }
+        function registroDaNave() {
+            nave.name = prompt("informe o nome da nave")
+            nave.type = prompt("informe o tipo da nave")
+            nave.velocidadeMAx = Number(prompt("informe a velocidade máxima da nave em (k/s)"))
+        }
+
+        function aceleração() {
+            let aceleração = Number(prompt("quanto você quer acelerar ? "))
+            nave.acelNave(aceleração)
+            if (nave.velocidade > nave.velocidadeMAx) {
+                alert(`velocidade máxima ultrapassada!\nvelocidade da nave: ${nave.velocidade}\n"velocidade máxima da nave: ${nave.velocidadeMAx} (k/s)"`)
+            } 
+        }
+
+            function stop() {
+                alert(`nome: ${nave.name}\ntipo da nave: ${nave.type}\nvelocidade da nave: ${nave.velocidade}\nvelocidade MAX: ${nave.velocidadeMAx}`)
+                nave.velocidade = 0
+            }
+
+            function menu() {
+                let optionMenu
+                do {
+                    optionMenu = Number(prompt("você deseja\n1 - acelerar\n2 - parar"))
+                    switch (optionMenu) {
+                        case 1:
+                            aceleração()
+                            break;
+                        case 2:
+                            stop()
+                            break;
+
+                        default:
+                            alert("opção inválida")
+                            break;
+                    }
+                } while (optionMenu != 2);
+            }  
+        registroDaNave()
+        menu()
+        
+    </script>
+</body>
+
+</html>

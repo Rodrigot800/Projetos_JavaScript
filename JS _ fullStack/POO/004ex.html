@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Spaceship {
+            constructor(name, crewQuality) {
+                this.name = name;
+                this.crewQuality = crewQuality;
+                this.isHitched = false;
+                this.entranceDoorsOpen = false;
+            }
+
+            hitch() {
+                this.isHitched = true;
+                this.entranceDoorsOpen = true;
+            }
+        }
+
+        function menu() {
+            let chosenOption;
+            while (chosenOption !== "1" && chosenOption !== "2" && chosenOption !== "3") {
+                chosenOption = prompt("O que deseja fazer?\n1 - Engatar nave\n2 - Imprimir naves\n3 - Sair do programa");
+            }
+            return chosenOption;
+        }
+
+        function createSpaceShip() {
+            let spaceshipName = prompt("Informe o nome da nave");
+            let crewQuality = prompt("Informe a quantidade de tripulantes");
+            let spaceship = new Spaceship(spaceshipName, crewQuality);
+            return spaceship;
+        }
+
+        function printSpaceShipList(spaceships) {
+            let printSpaceShipList = "";
+            spaceships.forEach((spaceship, index) => {
+                printSpaceShipList += `${index + 1} - ${spaceship.name} ${spaceship.crewQuality} tripulantes\n`;
+            });
+            alert(printSpaceShipList);
+        }
+
+        let hitchedSpaceships = [];
+        let chosenOption;
+
+        while (chosenOption !== "3") {
+            chosenOption = menu();
+            switch (chosenOption) {
+                case "1":
+                    let spaceShipToAdd = createSpaceShip();
+                    spaceShipToAdd.hitch();
+                    hitchedSpaceships.push(spaceShipToAdd);
+                    break;
+
+                case "2":
+                    printSpaceShipList(hitchedSpaceships);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
