@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        <select onchange="verifyEnablement()">
+            <option value="enabled">habilitado</option>
+            <option value="disabled">desabilitado</option>
+        </select>
+    </p>
+    <p>
+        <label>algum texto:</label>
+        <input type="text" name="some-text" id="">
+    </p>
+    <p id="messege"></p>
+    <script>
+        function verifyEnablement() {
+            let selectValue = document.querySelector("select").value
+            if (selectValue == "disabled") {
+                document.querySelector("input[name='some-text']").disabled = true
+                let pElemente = document.getElementById("messege")
+                pElemente.innerText = "DESABILITADO"
+                pElemente.style.color = "white"
+                pElemente.style.background = "red"
+            } else {
+                document.querySelector("input[name='some-text']").disabled = false
+                let pElemente = document.getElementById("messege")
+                pElemente.innerText = ""
+                pElemente.style.color = "black"
+                pElemente.style.background = "transparent"
+            }
+        }
+    </script>
+</body>
+</html>

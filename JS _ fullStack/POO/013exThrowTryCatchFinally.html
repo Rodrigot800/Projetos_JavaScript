@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
-  <script>class spaceshipWeapons {
+  <script>
+    class spaceshipWeapons {
       constructor(identifler) {
         this.identifler = identifler;
         this.shotsleft = 5;
@@ -21,17 +24,35 @@
         }
 
       }
+      reload() {
+        this.shotsleft = 5
+      }
     }
 
     let fenixWeapon = new spaceshipWeapons(10);
-    fenixWeapon.shoot();
-    fenixWeapon.shoot();
-    fenixWeapon.shoot();
-    fenixWeapon.shoot();
-    fenixWeapon.shoot();
-    fenixWeapon.shoot();
+    /*try {
+    // Código que pode gerar uma exceção
+    } catch (excecao) {
+    // Código para lidar com a exceção
+    } finally {
+    // Código a ser executado sempre
+      }*/
+    try {
+      fenixWeapon.shoot();
+      fenixWeapon.shoot();
+      fenixWeapon.shoot();
+      fenixWeapon.shoot();
+    } catch (e) {
+      console.log(e.message)
+      fenixWeapon.reload()
+    } finally {
+      console.log("Arma deu bons tiros")
+    }
+
 
     console.log(fenixWeapon);
-    </script>
+
+  </script>
 </body>
+
 </html>
