@@ -9,7 +9,7 @@
 
 <body>
     <h3>cadastro de Imóveis</h3>
-    <form>
+    <form onsubmit="app.addProperty()">
         <p>
             <label>Tipo:</label>
             <select name="kind" id="">
@@ -25,7 +25,7 @@
             <input type="checkbox" name="rented" id=""> alugado
         </p>
         <button type="submit">salvar</button>
-        <button type="button">Limpa</button>
+        <button type="button" onclick="app.cleanForm()">Limpa</button>
     </form>
 
     <br>
@@ -34,14 +34,62 @@
 
     <ul id="properties"> </ul>
     <script>
-        class property {
-            constructor(kind, area, rented){
+        
+        class Property {
+            constructor(kind, area, rented) {
                 this.kind = kind
                 this.area = area
-                this.rented =  rented
+                this.rented = rented
+            }
+        }
+        class App {
+            addProperty() {
+                event.preventDefault()
+                let kind = document.querySelector("select[name='kind']").value
+                let area = document.querySelector("input[name='area']").value
+                let rented = document.querySelector("input[name='rented']").checked
+                let property = new Property(kind, area, rented)
+                this.addOnPropertyList(property)
+                this.cleanForm()
+            }
+
+            addOnPropertyList(property) {
+                let listElement = document.createElement("li")
+                let propertyInfo = " Tipo: " + property.kind + " (Area:" + property.area + "m²)  " 
+                if (property.rented) {
+                    let rentedMark = this.createRendedMark()
+                    listElement.appendChild(rentedMark)
+                }
+                listElement.innerHTML += propertyInfo
+                let buttoToRemove = this.createRemoveButto()
+                listElement.appendChild(buttoToRemove)
+                document.getElementById("properties").appendChild(listElement)
+            }
+
+            createRendedMark(){
+                let rentedMark = document.createElement("span")
+                rentedMark.style.color = "white"
+                rentedMark.style.backgroundColor = "red"
+                rentedMark.innerText = "ALUGADA"
+                return rentedMark
+            }
+            createRemoveButto(){
+                let buttoToRemove = document.createElement("button")
+                buttoToRemove.setAttribute("onclick", "app.remove()")
+                buttoToRemove.innerText = "Remover"
+                return buttoToRemove
+            }
+            cleanForm(){
+                document.querySelector("input[name='area']").value = ""
+                document.querySelector("input[name='rented']").checked = false
+            }
+            remove(){
+                let liToRemove = event.target.parentNode
+                document.getElementById("properties").removeChild(liToRemove)
             }
         }
     </script>
+    <script src="002exMain.js"></script>
 </body>
 
 </html>
