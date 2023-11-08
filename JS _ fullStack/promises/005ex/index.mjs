@@ -1,9 +1,9 @@
 import SpaceShip from "./SpaceShip.js";
 import Space_enginer from "./Space_enginer.js";
 
-const sophia = new SpaceShip("sophia", 10, 5);
-const amstrdea = new SpaceShip("amsterdã", 14, 10);
-const dwarfStart = new SpaceShip("estrela-anã", 20, 4);
+const sophia = new SpaceShip("sophia", 10, 5 , 70);
+const amstrdea = new SpaceShip("amsterdã", 14, 10, 40);
+const dwarfStart = new SpaceShip("estrela-anã", 20, 4 , 80);
 
 const sophiaEgine = new Space_enginer(sophia);
 const amstrdeaEgine = new Space_enginer(amstrdea);
