@@ -6,15 +6,15 @@ if (quantLove <= 10) {
   msg.innerText += " você me ama muito pouco !!! \n game over";
 } else if (11 < quantLove && quantLove <= 100) {
   msg.innerText = quantLove + "\n";
-  msg.textContent = "você me ama pouco, te amo bem mais !!! \n \n game over";
+  msg.innerText += "você me ama pouco, te amo bem mais !!! \n game over";
 } else if (101 < quantLove && quantLove < 10000) {
   msg.innerText = quantLove + "\n";
-  msg.textContent =
-    "estou vendo que realmente me ama. porém, te amo bem mais !!! \n \n game over";
+  msg.innerText +=
+    "estou vendo que realmente me ama. porém, te amo bem mais !!! \n game over";
 } else {
   msg.innerText = quantLove + "\n";
-  msg.textContent =
-    "boa tentativa, mas eu te amo muuuuiiiittttooooo mais !!!! \n\n game over";
+  msg.innerText +=
+    "boa tentativa, mas eu te amo muuuuiiiittttooooo mais !!!! \n game over";
 }
 
 function refazerPerg() {
