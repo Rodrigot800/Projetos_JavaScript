@@ -1,10 +1,22 @@
 .mainMsg{
     background-color: rgba(220, 20, 60, 0.808);
-    width: 90vw;
+    width: 95vw;
     max-width: 800px;
+    height: 98vh;
     margin: auto;
     text-align: center;
     border-radius: 15px;
     padding: 5px;
 
+}
+.btn{
+    background-color: rgb(151, 23, 0);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.5em;
+}
+#msg{
+    font-size: 1.5em;
+    color: azure;
 }
